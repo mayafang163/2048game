@@ -69,9 +69,10 @@ var game={
         else{//否则
           //如果c<CN-1且当前元素等于右侧元素,返回false
           if(c<this.CN-1&&this.data[r][c]==this.data[r][c+1]) return false;
-          else //否则
+          else{ //否则
             //如果r<RN-1且当前元素等于下方元素,返回false
-            if(r<this.RN-1&&this.data[r][c]==this.data[r+1][c]) return false;            
+            if(r<this.RN-1&&this.data[r][c]==this.data[r+1][c]) return false;
+          }
         }
       }
     }//(遍历结束)
@@ -125,6 +126,8 @@ var game={
     //如果before不等于after
     if(before!=after){
       this.randomNum();//随机生成一个新数
+      if(this.isGameOver()) //如果游戏结束
+        this.state=this.GAMEOVER;//修改游戏状态
       this.updateView();//更新页面
     }
   },
@@ -177,6 +180,8 @@ var game={
     //如果before不等于after
     if(before!=after){
       this.randomNum();//随机生成一个新数
+      if(this.isGameOver()) //如果游戏结束
+        this.state=this.GAMEOVER;//修改游戏状态
       this.updateView();//更新页面
     }
   },
@@ -228,6 +233,8 @@ var game={
     //如果before不等于after
     if(before!=after){
       this.randomNum();//随机生成一个新数
+      if(this.isGameOver()) //如果游戏结束
+        this.state=this.GAMEOVER;//修改游戏状态
       this.updateView();//更新页面
     }
   },
@@ -293,8 +300,7 @@ var game={
       div.style.display="block";
       //找到id为score的span,设置其内容为score
       document.getElementById("final").innerHTML=this.score;
-    }
-    else{//否则，就设置div隐藏
+    }else{//否则，就设置div隐藏
       div.style.display="none";
     }
   },
